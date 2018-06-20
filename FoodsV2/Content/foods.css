@@ -1,0 +1,406 @@
+img[alt*="www.000webhost.com"] {
+  display: none;}
+html {
+  size: 10px;
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+.logo{
+	font-size: 1.5rem;
+	margin-bottom: 1px;
+	padding-bottom: 9px;
+	height: 50px;
+  width: 250px;
+  margin-left: 110px;
+}
+
+.logo2{
+	height: 50px;
+  width: 100px;
+}
+
+.fondoform{
+	background-image: url("../img/backgroundform.jpg");
+	height: 100%;
+	width: 100%;
+	background-size: contain;
+}
+
+.fondocontacto{
+  background-image: url("../img/fondocontacto.jpg");
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+}
+
+.fondocategoria{
+  background-image: url("../img/fondocategorias.jpg");
+  background-size: cover;
+}
+
+.imagenblanco{
+  background-color: #FFFFFF;
+  height: 2rem;
+  width: 100%;
+}
+
+.imagen1{
+  background-image: url("../img/b2.jpg");
+	height: 34.75rem;
+	width: 100%;
+	background-size: cover;
+}
+
+.imagen2{
+	/*background-color: #FFFFFF;*/
+  background-image: url("../img/b2.jpg");
+	width: 100%;
+  background-size: cover;
+}
+
+.imagen3{
+	background-image: url("../img/background3.jpg");
+	height: 25rem;
+	width: 100%;
+  padding: 15px;
+	background-size: cover;
+}
+
+.imagen4{
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+.fondogris{
+  background-color: #151515;
+  width: 100%;
+}
+
+.fondonegro{
+  background-color: #000000;
+  height: 4rem;
+  width: 100%;
+}
+
+.fondoReceta{
+  background-image: url("../img/a.png");
+  width: 100%;
+ background-size: cover;
+}
+
+.imgComentarios{
+  width: 75px;
+  height: 75px;
+}
+
+.imgListado{
+  width: 358px;
+  height: 250px;
+}
+
+#previewImagen{
+  background-image: url("../img/noimagen.jpg");
+  height: 300px;
+  width: 603px;
+  background-size: 100%;
+  background-position: center;
+}
+
+.affix {
+  background-color: #343a40;
+  -webkit-transition:all 0.8s ease-out;
+  -moz-transition:all 0.8s ease-out;  
+  -o-transition:all 0.8s ease-out;         
+  transition:all 0.8s ease-out;
+}
+
+.affix a {
+  color: #FFFFFF !important;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.affix span {
+  color: #FFFFFF !important;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+}
+
+.affix-top {
+  /* navbar style at top */
+  background-color:white;
+  border-color:white;
+  -webkit-transition:all 0.8s ease;
+  -moz-transition:all 0.8s ease; 
+  -o-transition:all 0.8s ease;         
+  transition:all 0.8s ease;  
+}
+
+.affix-top a {
+    color: #000000; 
+}
+
+.affix-top span {
+    color: #000000; 
+}
+
+/*.img-fluid{
+  max-height: 25em;
+  width: auto;
+}*/
+.backgroundPerfil{
+  margin-top: 3.6rem;
+  background-image: url("../img/b3.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  background-size: 100% 100%;
+  overflow:auto;
+  padding-right: 17px;
+
+}
+
+.card{
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  display: inline-flex;
+  margin-bottom: 2rem;
+  margin-right: 0.7rem;
+}
+
+.card-img-top2{
+  display: flex;
+  height: 7rem;
+  width: 7rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.card-body2{
+  margin-top: 3rem;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.botonfile{
+  height: 2.4rem;
+}
+
+.carousel-item img{
+  margin-top: 20px;
+  width: 1000px;
+  min-width: 1000px;
+  height: 100%;
+  max-height: 450px;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.back-to-top{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+.destacadas{
+  /*font-family: 'Lobster', cursive;*/
+  font-family: 'Playfair Display', serif;
+}
+
+.breadcrumb{
+  background-color: transparent;
+}
+
+.imagenreceta{
+  width: 400px;
+  height: 350px;
+}
+
+.text-black{
+  color: #000000;
+}
+
+.nosub{
+  text-decoration: none;
+  width: 100%;
+}
+
+.nosub:hover{
+  color: #000000;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .imagen1{
+    height: 35rem;
+  }
+
+  .imagen3{
+    height: 25rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .imagenblanco{
+    height: 5rem;
+  }
+
+  .imagen1{
+    height: 35em;
+  }
+
+  .imagen3{
+    height: 20rem;
+  }
+
+  .search{
+    width: 4rem;
+    padding-left: 6px;
+  }
+
+  .carousel-item img{
+    min-width: 750px;
+    max-height: 450px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .imagenblanco{
+    height: 4rem;
+  }
+
+  .imagen1{
+    height: 23rem;
+  }
+
+  .imagen3{
+    height: 30rem;
+  }
+
+  .carousel-item img{
+    min-width: 380px;
+    max-height: 250px;
+  }
+
+  .imagenreceta{
+    width: 350px;
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .carousel-item img{
+    min-width: 345px;
+    max-height: 225px;
+  }
+
+  .imagenreceta{
+    width: 300px;
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .imagenblanco{
+    height: 4rem;
+  }
+
+  .imagen1{
+    height: 20rem;
+  }
+
+  .imagen3{
+    height: 25rem;
+  }
+
+  .carousel-item img{
+    min-width: 340px;
+    max-height: 250px;
+  }
+
+  .imagenreceta{
+    width: 300px;
+    height: 250px;
+  }
+}
+
+/* Pagination links */
+.pagination a {
+    color: black;
+    float: left;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 16px;
+    padding-left: 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/*.embed-responsive {
+    position: relative;
+    display: inline-flex !important;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}*/
+
+#listaUsuarios th{
+  background-color: #878585;
+  text-align: center;
+}
+
+#listaUsuarios td{
+  text-align: center;
+}
+
+.noactive{
+  opacity: 0.5;
+}
+
+.btn.active, .btn:active{
+  opacity: 1;
+}

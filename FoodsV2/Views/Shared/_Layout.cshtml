@@ -1,43 +1,255 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>FoodsInAll</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+
+    <script type="text/javascript" src="~/Scripts/affix.js"></script>
+    <script type="text/javascript" src="~/Scripts/tether.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/tether.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
+    <script type="text/javascript" src="~/Scripts/jquery.toast.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.toast.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/foods.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.rateyo.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bubbles.css">
+    <script type="text/javascript" src="~/Scripts/jquery.rateyo.js"></script>
+    <script type="text/javascript" src="~/Scripts/md5.js"></script>
+    <script type="text/javascript" src="~/Scripts/checkImageSize.js"></script>
+    <script type="text/javascript" src="~/Scripts/Librerias.js"></script>
+    <script type="text/javascript" src="~/Scripts/header.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/breadcrumb.css">
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+</head>
+<body>
+
+    <!-- Navbar -->
+
+    <section class="navbar">
+        <nav id="nav" class="navbar navbar-toggleable navbar-expand-lg fixed-top" data-spy="affix">
+            <div>
+                <a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url()?>/assets/img/logo.svg" class="logo2"></a>
+                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon mt-2">☰</span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active text-center text-lg-left">
+                        <a class="nav-link h6" href="<?= base_url() ?>">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item text-center text-lg-left">
+                        <a class="nav-link h6" href="<?= base_url() ?>categorias">Categorías</a>
+                    </li>
+                    <li class="nav-item text-center text-lg-left">
+                        <a class="nav-link h6" href="" data-toggle="modal" data-target="#contacto">Contacto</a>
+                    </li>
+                    <?php if(!empty($_SESSION) && $usuario['rol'] == "admin"):?>
+                    <li class="nav-item text-center text-lg-left">
+                        <a class="nav-link h6" href="<?= base_url() ?>ListaUsuarios">Lista Usuarios</a>
+                    </li>
+                    <?php endif; ?>
+                    <?php if(!empty($_SESSION) && $_SESSION["status"] != 0):?>
+                    <li class="nav-item text-center text-lg-left">
+                        <a class="nav-link h6" href="<?= base_url() ?>crearReceta">Nueva receta</a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+                <form class="form-inline text-center text-lg-left row mx-sm-auto mx-md-0" name="buscarForm" method="post" action="<?= base_url() ?>inicio/buscar">
+                    <input class="form-control mr-sm-2 col-8 ml-auto" type="search" placeholder="Buscar" aria-label="Search" name="buscar" id="buscar">
+                    <button class="btn btn-outline-info my-2 my-sm-0 mr-auto search text-center" type="button" onclick="buscarListado()">Buscar</button>
+                </form>
+                <ul class="navbar-nav m-r-0 text-center text-lg-left">
+                    <li class="nav-item">
+                        @if (Session["startsession"] == null)
+                        {
+                            <a class="nav-link h6" href="" data-toggle="modal" data-target="#login">Ingresar</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link h6" href="<?= base_url()?>perfil"><?=$usuario['apenom']?></a>
+                        }
+                    </li>
+                    <li class="nav-item">
+                        @if (Session["startsession"] == null)
+                        {
+                            <a class="nav-link h6" href="" data-toggle="modal" data-target="#signup">Registrarse</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link h6" href="<?= base_url()?>inicio/logOut">Cerrar sesión</a>
+                        }
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Sign up form -->
+
+        <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content fondoform">
+                    <div class="modal-header">
+                        <img src="<?= base_url()?>/assets/img/logo.svg" class="logo">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="signform" action="<?= base_url() ?>inicio/signPost" method="post">
+                            <div class="form-group">
+                                <label for="signuser" class="col-form-label">Nombre y apellidos</label>
+                                <input type="text" class="form-control" id="signuser" name="signuser">
+                                <small id="errorUser" style="visibility: hidden;" class="form-text text-danger">Nombre y apellidos incorrectos.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="signemail" class="col-form-label">Email</label>
+                                <input type="text" class="form-control" id="signemail" name="signemail">
+                                <small id="errorEmail" style="visibility: hidden;" class="form-text text-danger">Email incorrecto o ya existe.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="signtlf" class="col-form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="signtlf" name="signtlf">
+                                <small id="errorTlf" style="visibility: hidden;" class="form-text text-danger">Teléfono debe tener 9 digitos y empezar por 6,7,8 o 9.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="signpass" class="col-form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="signpass" name="signpass">
+                                <small id="errorPass" style="visibility: hidden;" class="form-text text-danger">Contraseña debe tener entre 8 y 12 carácteres.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="signpassrepeat" class="col-form-label">Repetir contraseña</label>
+                                <input type="password" class="form-control" id="signpassrepeat" name="signpassrepeat" onkeypress="signEnter(event)">
+                                <small id="errorRepPass" style="visibility: hidden;" class="form-text text-danger">Las contraseñas no coinciden.</small>
+                            </div>
+                            <div>
+                                <input type="hidden" id="token" name="token" value="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer align-content-center justify-content-center">
+                        <button type="button" id="botonsign" class="btn btn-success" onclick="registrarse()">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login form -->
+
+        <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content fondoform">
+                    <div class="modal-header">
+                        <img src="<?= base_url()?>/assets/img/logo.svg" class="logo">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-lg-center" name="loginform" action="<?= base_url() ?>inicio/loginPost" method="post">
+                            <small id="errorLogin" style="visibility: hidden;" class="form-text text-danger">Email o contraseña incorrectos.</small>
+                            <div class="form-group">
+                                <label for="loginemail" class="col-form-label">Email</label>
+                                <input type="text" class="form-control" id="loginemail" name="loginemail">
+                                <small id="errorEmailLogin" style="visibility: hidden;" class="form-text text-danger">Email incorrecto.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginpass" class="col-form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="loginpass" name="loginpass" onkeypress="loginEnter(event)">
+                                <small id="errorPassLogin" style="visibility: hidden;" class="form-text text-danger">Contraseña debe tener entre 8 y 12 carácteres.</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer align-content-center justify-content-center">
+                        <button type="button" id="botonlogin" class="btn btn-success" onclick="login()">Iniciar sesión</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacts modal -->
+
+        <div class="modal fade" id="contacto" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content fondocontacto">
+                    <div class="modal-header">
+                        <img src="<?= base_url()?>/assets/img/logo.svg" class="logo">
+                        <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-lg-center" name="contactform" method="post">
+                            <div class="form-group">
+                                <label for="sendemail" class="col-form-label">Email</label>
+                                <input type="text" class="form-control" id="sendemail" name="sendemail">
+                                <small id="errorSendEmail" style="visibility: hidden;" class="form-text text-danger">Error email.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="sendconcept" class="col-form-label">Asunto</label>
+                                <textarea class="form-control" rows="5" id="sendconcept" name="sendconcept" onkeypress="contactEnter(event)"></textarea>
+                                <small id="errorSendConcept" style="visibility: hidden;" class="form-text text-danger">Debe rellenar el campo.</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer align-content-center justify-content-center">
+                        <button type="button" id="botoncontact" class="btn btn-secondary" onclick="checkContact()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @RenderBody()
+
+    <section class="footer">
+        <div class="fondogris pt-4">
+            <h5 class="h3 text-white mx-auto text-center">Páginas relacionadas</h5><br />
+            <div class="row mx-auto text-center">
+                <div class="col-xs-12 col-md-3 my-md-4">
+                    <ul class="list-unstyled">
+                        <li><a class="white-text text-lighten-3 text-white" href="http://www.velocidadcuchara.com/" target="_blank">Velocidad Cuchara</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-3 my-md-4">
+                    <ul class="list-unstyled">
+                        <li><a class="white-text text-lighten-3 text-white" href="https://cookidoo.es/vorwerkWebapp/" target="_blank">Cookidoo</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-3 my-md-4">
+                    <ul class="list-unstyled">
+                        <li><a class="white-text text-lighten-3 text-white" href="https://www.recetasgratis.net/" target="_blank">Recetas Gratis</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-3 my-md-4">
+                    <ul class="list-unstyled">
+                        <li><a class="white-text text-lighten-3 text-white" href="https://www.gallinablanca.es/recetas/" target="_blank">Gallina Blanca</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright fondonegro btn-group-vertical">
+            <p class="mx-auto text-white">© Copyright Foods 2018</p>
+        </div>
+    </section>
+
 </body>
 </html>
